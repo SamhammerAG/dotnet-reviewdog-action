@@ -16,21 +16,14 @@ Analyzes a dotnet build log file to verify the code style
     - run: dotnet build -c Release --no-restore | tee dotnet.buildlog
     - uses: SamhammerAG/dotnet-reviewdog-action@v1
       with:
-        name: dotnet
-        build_log_file: dotnet.buildlog
-        line_exclude_regex: ".*(warning|error) CS0618:.*"
-        github_token: ${{ secrets.MY_TOKEN }}
-        level: error
-        reporter: github-pr-review
-        fail_on_error: false
-        reviewdog_flags: "-additional-flag"
-        workdir: "."
+        reporter: github-check
+        workdir: Sources
 ```
 
 ### Arguments
 * name: Optional. The name of the job that is added to your workflow. Default is dotnet.
 * build_log_file: Optional. The file that is analyzed. Default is dotnet.buildlog.
-* line_exclude_regex: Optional. Exclude specific warnings by a regex. Default is empty.
+* line_exclude_regex: Optional. Exclude specific warnings by a regex. Default is empty. (e.g. ".\*(warning|error) CS0618:.\*")
 * github_token: Optional. Default is github.token.
 * level: Optional. Report level for reviewdog [info,warning,error]. Default is error.
 * reporter: Optional. Reporter of reviewdog command [github-pr-check,github-check,github-pr-review]. Default is github-pr-review.
