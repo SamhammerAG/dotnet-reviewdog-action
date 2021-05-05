@@ -12,6 +12,7 @@ Analyzes a dotnet build log file to verify the code style
          dotnet-version: 3.1.x
     - run: echo "::remove-matcher owner=csc::"
     - uses: reviewdog/action-setup@v1
+    - run: dotnet restore
     - run: dotnet build -c Release --no-restore | tee dotnet.buildlog
     - uses: SamhammerAG/dotnet-reviewdog-action@v1
       with:
