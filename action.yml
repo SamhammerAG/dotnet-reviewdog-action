@@ -43,8 +43,8 @@ inputs:
     description: Optional. The directory from which to look for the build log file and run reviewdog. Default '.'
   filter_mode:
     required: false
-    default: "added"
-    description: Optional. filter results by diff and you can control how reviewdog filter results by -filter-mode flag. Default 'added'
+    default: "nofilter"
+    description: Optional. filter results by diff and you can control how reviewdog filter results by -filter-mode flag. Default 'nofilter' https://github.com/reviewdog/reviewdog
 runs:
   using: composite
   steps:
