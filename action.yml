@@ -41,6 +41,10 @@ inputs:
     required: false
     default: "."
     description: Optional. The directory from which to look for the build log file and run reviewdog. Default '.'
+  filter_mode:
+    required: false
+    default: "nofilter"
+    description: Optional. filter results by diff and you can control how reviewdog filter results by -filter-mode flag. Default 'nofilter' https://github.com/reviewdog/reviewdog
 runs:
   using: composite
   steps:
@@ -64,6 +68,7 @@ runs:
             -efm=" %#%f(%l\\,%c): %*[warning,error] %m" \
             -efm="%#%f : %*[warning,error] %m" \
             -level="${{ inputs.level }}" \
+            -filter-mode="${{ inputs.filter_mode }}" \
             ${{ inputs.reviewdog_flags }}
       env:
         REVIEWDOG_GITHUB_API_TOKEN: ${{ inputs.github_token }}
